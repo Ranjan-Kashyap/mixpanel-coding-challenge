@@ -14,6 +14,7 @@ export const WelcomeScreen = ({
   nextScreen,
   additionalInfo,
 }) => {
+  // This is an array of user lists
   const userList = [
     {
       id: '11111101',
@@ -103,7 +104,7 @@ export const WelcomeScreen = ({
       var jsonUser = JSON.parse(value);
       if (jsonUser == null) {
         const rndInt = randomIntFromInterval(0, 11);
-        const userData = userList[8];
+        const userData = userList[rndInt];
         Preferences.setUser(JSON.stringify(userData));
         mixpanel.identify(userData.id);
         mixpanel.getPeople().set('first_name', userData.first_name);

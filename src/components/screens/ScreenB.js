@@ -36,6 +36,7 @@ export const ScreenB = ({navigation}) => {
   }, []);
 
   const initLog = async () => {
+    //Initilize mixpanel
     mixpanel = await Mixpanel.init('6722115bd61a9655318037ea2104e78c');
     mixpanel.timeEvent('Screen B');
   };

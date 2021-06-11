@@ -14,6 +14,7 @@ export const ScreenF = ({navigation, name}) => {
   }, []);
 
   const initLog = async () => {
+    //Initilize mixpanel
     mixpanel = await Mixpanel.init('6722115bd61a9655318037ea2104e78c');
     mixpanel.timeEvent('Screen F');
   };
@@ -26,7 +27,9 @@ export const ScreenF = ({navigation, name}) => {
       <Button
         title="Restart"
         onPress={() => {
+          //Track Button click event
           mixpanel.track('Restart Button Click');
+          //Navigate to main scree
           navigation.navigate('Welcome');
         }}
       />

@@ -14,7 +14,11 @@ export const WelcomeScreen = ({
   nextScreen,
   additionalInfo,
 }) => {
+<<<<<<< HEAD
   // This is an array of user lists
+=======
+  //Create user profile array to use user profile
+>>>>>>> 93e6619ece1806a4b2a8c6ea93e547953cfa4cb0
   const userList = [
     {
       id: '11111101',
@@ -98,14 +102,25 @@ export const WelcomeScreen = ({
   }, []);
 
   const initLog = async () => {
+    //Initilize mixpanel
     mixpanel = await Mixpanel.init('6722115bd61a9655318037ea2104e78c');
+    //Check user stored in local storage
     Preferences.getUser().then(value => {
       console.log('User', value);
+      //convert user data in to json object
       var jsonUser = JSON.parse(value);
       if (jsonUser == null) {
+        //Generate random number
         const rndInt = randomIntFromInterval(0, 11);
+<<<<<<< HEAD
         const userData = userList[rndInt];
+=======
+        //Get random user details
+        const userData = userList[rndInt];
+        //Store user details in local storage
+>>>>>>> 93e6619ece1806a4b2a8c6ea93e547953cfa4cb0
         Preferences.setUser(JSON.stringify(userData));
+        //Add user data to mixpanel
         mixpanel.identify(userData.id);
         mixpanel.getPeople().set('first_name', userData.first_name);
         mixpanel.getPeople().set('last_name', userData.last_name);
@@ -144,6 +159,8 @@ export const WelcomeScreen = ({
             );
             mixpanel.track('Welcome Screen');
             mixpanel.track('Press Here to Start Button Click');
+
+            //Navigate to screen A or screen B
             navigation.navigate(data);
           }}
         />

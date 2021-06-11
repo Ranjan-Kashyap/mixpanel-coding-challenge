@@ -12,14 +12,18 @@ import {Mixpanel} from 'mixpanel-react-native';
 const onItemPick = async (navigation, url, data, pickerTheme) => {
   var mixpanel = await Mixpanel.init('6722115bd61a9655318037ea2104e78c');
 
+  //Check which screen is open because same component use for both screen
+  //Stop active screen time tracking
   if (pickerTheme == 'Musical Instruments') {
     mixpanel.track('Screen A');
   } else {
     mixpanel.track('Screen B');
   }
+  //Add log which button user clicked
   mixpanel.track(data.title + ' Button Click', {id: data.id, url: data.url});
-
+  //Open url in browser
   Linking.openURL(url);
+  //Navigate to final screen
   navigation.navigate('Final');
 };
 

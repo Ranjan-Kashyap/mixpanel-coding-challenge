@@ -15,7 +15,11 @@ export const WelcomeScreen = ({
   nextScreen,
   additionalInfo,
 }) => {
+<<<<<<< HEAD
+  // This is an array of user lists
+=======
   //Create user profile array to use user profile
+>>>>>>> 93e6619ece1806a4b2a8c6ea93e547953cfa4cb0
   const userList = [
     {
       id: '11111101',
@@ -109,9 +113,7 @@ export const WelcomeScreen = ({
       if (jsonUser == null) {
         //Generate random number
         const rndInt = randomIntFromInterval(0, 11);
-        //Get random user details
         const userData = userList[rndInt];
-        //Store user details in local storage
         Preferences.setUser(JSON.stringify(userData));
         //Add user data to mixpanel
         mixpanel.identify(userData.id);

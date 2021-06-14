@@ -15,11 +15,7 @@ export const WelcomeScreen = ({
   nextScreen,
   additionalInfo,
 }) => {
-<<<<<<< HEAD
-  // This is an array of user lists
-=======
   //Create user profile array to use user profile
->>>>>>> 93e6619ece1806a4b2a8c6ea93e547953cfa4cb0
   const userList = [
     {
       id: '11111101',

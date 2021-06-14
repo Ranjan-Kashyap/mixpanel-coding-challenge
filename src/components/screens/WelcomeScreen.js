@@ -5,6 +5,7 @@ import {LineSeparator} from '../elements/LineSeparator';
 import {SkooveLoader} from '../elements/SkooveLoader';
 import {Mixpanel} from 'mixpanel-react-native';
 import Preferences from '../../utils/Preferences';
+import {token as MixpanelToken} from '../../../app.json';
 
 export const WelcomeScreen = ({
   navigation,
@@ -99,7 +100,7 @@ export const WelcomeScreen = ({
 
   const initLog = async () => {
     //Initilize mixpanel
-    mixpanel = await Mixpanel.init('6722115bd61a9655318037ea2104e78c');
+    mixpanel = await Mixpanel.init(MixpanelToken);
     //Check user stored in local storage
     Preferences.getUser().then(value => {
       console.log('User', value);
@@ -146,9 +147,7 @@ export const WelcomeScreen = ({
         <Button
           title={'Press Here to Start'}
           onPress={async () => {
-            var mixpanel = await Mixpanel.init(
-              '6722115bd61a9655318037ea2104e78c',
-            );
+            var mixpanel = await Mixpanel.init(MixpanelToken);
             mixpanel.track('Welcome Screen');
             mixpanel.track('Press Here to Start Button Click');
 

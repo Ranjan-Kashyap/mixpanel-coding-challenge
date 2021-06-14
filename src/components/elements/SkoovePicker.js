@@ -8,9 +8,10 @@ import {
   Linking,
 } from 'react-native';
 import {Mixpanel} from 'mixpanel-react-native';
+import {token as MixpanelToken} from '../../../app.json';
 
 const onItemPick = async (navigation, url, data, pickerTheme) => {
-  var mixpanel = await Mixpanel.init('6722115bd61a9655318037ea2104e78c');
+  var mixpanel = await Mixpanel.init(MixpanelToken);
 
   //Check which screen is open because same component use for both screen
   //Stop active screen time tracking

@@ -1,6 +1,7 @@
 import React, {useEffect} from 'react';
 import {SkoovePicker} from '../elements/SkoovePicker';
 import {Mixpanel} from 'mixpanel-react-native';
+import {token as MixpanelToken} from '../../../app.json';
 
 const programmingLanguages = [
   {
@@ -37,7 +38,7 @@ export const ScreenB = ({navigation}) => {
 
   const initLog = async () => {
     //Initilize mixpanel
-    mixpanel = await Mixpanel.init('6722115bd61a9655318037ea2104e78c');
+    mixpanel = await Mixpanel.init(MixpanelToken);
     mixpanel.timeEvent('Screen B');
   };
 

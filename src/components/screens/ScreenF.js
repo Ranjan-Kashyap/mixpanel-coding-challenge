@@ -1,7 +1,7 @@
 import React, {useEffect} from 'react';
 import {Text, View, StyleSheet, Button} from 'react-native';
-
 import {Mixpanel} from 'mixpanel-react-native';
+import {token as MixpanelToken} from '../../../app.json';
 
 export const ScreenF = ({navigation, name}) => {
   var mixpanel = null;
@@ -15,7 +15,7 @@ export const ScreenF = ({navigation, name}) => {
 
   const initLog = async () => {
     //Initilize mixpanel
-    mixpanel = await Mixpanel.init('6722115bd61a9655318037ea2104e78c');
+    mixpanel = await Mixpanel.init(MixpanelToken);
     mixpanel.timeEvent('Screen F');
   };
 

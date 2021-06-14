@@ -1,7 +1,7 @@
 import React, {useEffect} from 'react';
 import {SkoovePicker} from '../elements/SkoovePicker';
-
 import {Mixpanel} from 'mixpanel-react-native';
+import {token as MixpanelToken} from '../../../app.json';
 
 const musicInstruments = [
   {
@@ -43,7 +43,7 @@ export const ScreenA = ({navigation}) => {
 
   const initLog = async () => {
     //Initilize mixpanel
-    mixpanel = await Mixpanel.init('6722115bd61a9655318037ea2104e78c');
+    mixpanel = await Mixpanel.init(MixpanelToken);
     mixpanel.timeEvent('Screen A');
   };
 

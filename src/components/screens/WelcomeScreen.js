@@ -118,12 +118,12 @@ export const WelcomeScreen = ({
         mixpanel.getPeople().set('email', userData.email);
       }
     });
-
+    // This will track time of the welcome screen
     mixpanel.timeEvent('Welcome Screen');
 
-    //mixpanel.registerSuperProperties({Name: 'Vishal'});
+    
   };
-
+//Function to generate random integer
   const randomIntFromInterval = (min, max) => {
     // min and max included
     return Math.floor(Math.random() * (max - min + 1) + min);

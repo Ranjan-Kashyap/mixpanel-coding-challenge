@@ -153,10 +153,8 @@ export const WelcomeScreen = ({
     // This will track time of the welcome screen
     mixpanel.timeEvent('Welcome Screen');
   };
+// This is to initialize AppsFlyer SDK
 
-<<<<<<< HEAD
-    
-=======
   const initAppsFlyer = async () => {
     const options = {
       devKey: 'eNNxhxXyiU6WDZMaLhn8Tj',
@@ -168,7 +166,6 @@ export const WelcomeScreen = ({
     var resInitSdk = await appsFlyer.initSdk(options);
     console.log('resInitSdk', resInitSdk);
     logEvent();
->>>>>>> 04a2b1ef62b2de12252ab3098c91c8a9ab425d81
   };
 //Function to generate random integer
   const randomIntFromInterval = (min, max) => {

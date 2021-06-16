@@ -6,6 +6,37 @@ import {SkooveLoader} from '../elements/SkooveLoader';
 import {Mixpanel} from 'mixpanel-react-native';
 import Preferences from '../../utils/Preferences';
 import {token as MixpanelToken} from '../../../app.json';
+import appsFlyer from 'react-native-appsflyer';
+
+// eslint-disable-next-line no-unused-vars
+var onInstallConversionDataCanceller = appsFlyer.onInstallConversionData(
+  res => {
+    console.log('onInstallConversionData: ', res);
+    if (res.type === 'onInstallConversionSuccess') {
+      if (JSON.parse(res.data.is_first_launch) === true) {
+        if (res.data.af_status === 'Non-organic') {
+          var media_source = res.data.media_source;
+          var campaign = res.data.campaign;
+          console.log(
+            'This is first launch and a Non-Organic install. Media source: ' +
+              media_source +
+              ' Campaign: ' +
+              campaign,
+          );
+        } else if (res.data.af_status === 'Organic') {
+          console.log('This is first launch and a Organic Install');
+        }
+      } else {
+        console.log('This is not first launch');
+      }
+    }
+  },
+);
+
+// eslint-disable-next-line no-unused-vars
+var onAppOpenAttributionCanceller = appsFlyer.onAppOpenAttribution(res => {
+  console.log('onAppOpenAttribution', res);
+});
 
 export const WelcomeScreen = ({
   navigation,
@@ -92,6 +123,7 @@ export const WelcomeScreen = ({
     doFetch();
 
     initLog();
+    initAppsFlyer();
 
     return () => {
       mixpanel.track('Welcome Screen');
@@ -120,14 +152,56 @@ export const WelcomeScreen = ({
     });
     // This will track time of the welcome screen
     mixpanel.timeEvent('Welcome Screen');
+  };
 
+<<<<<<< HEAD
     
+=======
+  const initAppsFlyer = async () => {
+    const options = {
+      devKey: 'eNNxhxXyiU6WDZMaLhn8Tj',
+      isDebug: true,
+      //appId: '1430088267',
+      onInstallConversionDataListener: true, //Optional
+      onDeepLinkListener: true, //Optional
+    };
+    var resInitSdk = await appsFlyer.initSdk(options);
+    console.log('resInitSdk', resInitSdk);
+    logEvent();
+>>>>>>> 04a2b1ef62b2de12252ab3098c91c8a9ab425d81
   };
 //Function to generate random integer
   const randomIntFromInterval = (min, max) => {
     // min and max included
     return Math.floor(Math.random() * (max - min + 1) + min);
   };
+
+  const logEvent = () => {
+    const eventName = 'af_test_inital_event';
+    const eventValues = {price: '123', amount: '5'};
+    appsFlyer.logEvent(
+      eventName,
+      eventValues,
+      result => {
+        console.log('logEvent: ' + result);
+      },
+      error => {
+        console.error('logEvent: ' + error);
+      },
+    );
+  };
+
+  /*  const LogLocationPressed = () => {
+    appsFlyer.logLocation(32.0853, 34.781769, result => {
+      console.log('logLocation: ' + result);
+    });
+  };
+
+  const LogCrossPromotion = () => {
+    appsFlyer.logCrossPromotionImpression('1192323960', 'test', {
+      custom_param: 'custom_value',
+    });
+  }; */
 
   return (
     <View style={styles.container}>
@@ -154,6 +228,13 @@ export const WelcomeScreen = ({
           }}
         />
       )}
+
+      {/* <Button
+        onPress={LogCrossPromotion}
+        title="Log Location"
+        color="#009688"
+      />
+      <Button onPress={logEvent} title="Log Event" color="#009688" /> */}
     </View>
   );
 };

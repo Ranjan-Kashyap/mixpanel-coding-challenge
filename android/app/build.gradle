@@ -131,7 +131,7 @@ android {
     }
 
     defaultConfig {
-        applicationId "com.skoovescodingchallenge"
+        applicationId "com.app.skoovescodingchallenge"
         minSdkVersion rootProject.ext.minSdkVersion
         targetSdkVersion rootProject.ext.targetSdkVersion
         versionCode 1
